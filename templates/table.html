@@ -1,0 +1,13 @@
+<table style="color:white">
+    <tr>
+    <th style="width:160px; font-weight:2em; font-family: 'Risque', cursive;"><center><h2>Rank</h2></center></th>
+    <th style="width:160px; font-weight:2em; font-family: 'Risque', cursive;"><center><h2>Name</h2></center></th>
+    <th style="width:160px; font-weight:2em; font-family: 'Risque', cursive;"><center><h2>Score</h2></center></th></tr>
+    <tr><br></tr>
+    {% for i in topten %}
+    <tr style="font-family: 'Alegreya', serif;">
+    <td><center><h3 style="margin:3px">{{ forloop.counter }}</h3></center></td>
+      <td><center><h3 style="margin:3px">{{ i.user.name }}</h3></center></td><td><center><h3 style="margin:3px">{{ i.score }}</h3></center></td>
+      </tr>
+    {% endfor %}
+</table>
