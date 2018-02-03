@@ -464,7 +464,7 @@ this.drawSquare2 = function(ctx,x,y,txt,on) {
 var GamePoints = function() {
   Game.points = 0;
 
-  var pointsLength = 8;
+  var pointsLength = 6;
 
   this.draw = function(ctx) {
     ctx.save();
