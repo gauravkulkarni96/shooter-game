@@ -113,7 +113,7 @@ var Game = new function() {
     container.style.height = h*2 + "px";
     window.scrollTo(0,1);
 
-    h = window.innerHeight + 2;
+    h = window.innerHeight;
     container.style.height = h + "px";
     container.style.width = w + "px";
     container.style.padding = 0;
@@ -121,17 +121,17 @@ var Game = new function() {
     if(h >= this.canvas.height * 1.75 || w >= this.canvas.height * 1.75) {
       this.canvasMultiplier = 2;
       this.canvas.width = w / 2;
-      this.canvas.height = h / 2;
+      this.canvas.height = h / 2 -50;
       this.canvas.style.width = w + "px";
-      this.canvas.style.height = h + "px";
+      this.canvas.style.height = h-50 + "px";
     } else {
       this.canvas.width = w;
-      this.canvas.height = h;
+      this.canvas.height = h-50;
     }
 
     this.canvas.style.position='absolute';
     this.canvas.style.left="0px";
-    this.canvas.style.top="0px";
+    this.canvas.style.top="50px";
 
   };
 
@@ -162,7 +162,7 @@ var SpriteSheet = new function() {
   return this;
 };
 
-var TitleScreen = function TitleScreen(title,subtitle,callback) {
+var TitleScreen = function TitleScreen(no,callback) {
   var up = false;
   this.step = function(dt) {
     if(!Game.keys['fire']) up = true;
@@ -170,15 +170,29 @@ var TitleScreen = function TitleScreen(title,subtitle,callback) {
   };
 
   this.draw = function(ctx) {
-    ctx.fillStyle = "#FFFFFF";
+    img = new Image()
+    if(no == 1){ //start
+      img.src = "static/images/Intro.png"
+    }
+    else if(no == 2){ //lose
+      img.src = "static/images/Lose.png"
+    }
+    if(no == 3){ //win
+      img.src = "static/images/Win.png"
+    }
+    ctx.drawImage(img,Game.width/10,Game.height/2-75,8*Game.width/10,150);
+    // ctx.fillStyle =  "#e53935";
+    // var measure = ctx.measureText(title); 
+    // ctx.fillRect(Game.width/10,G,266,100);
+    // ctx.fillStyle = "#FFFFFF";
 
-    ctx.font = "bold 40px bangers";
-    var measure = ctx.measureText(title);  
-    ctx.fillText(title,Game.width/2 - measure.width/2,Game.height/2);
+    // ctx.font = "bold 40px Arial";
+    // var measure = ctx.measureText(title);  
+    // ctx.fillText(title,Game.width/2 - measure.width/2,Game.height/2);
 
-    ctx.font = "bold 20px bangers";
-    var measure2 = ctx.measureText(subtitle);
-    ctx.fillText(subtitle,Game.width/2 - measure2.width/2,Game.height/2 + 40);
+    // ctx.font = "bold 20px Arial";
+    // var measure2 = ctx.measureText(subtitle);
+    // ctx.fillText(subtitle,Game.width/2 - measure2.width/2,Game.height/2 + 40);
   };
 };
 
@@ -361,8 +375,8 @@ var TouchControls = function() {
   var blockWidth = unitWidth-gutterWidth;
 
   this.drawSquare = function(ctx,x,y,txt,on) {
-    ctx.globalAlpha = on ? 0.9 : 0.6;
-    ctx.fillStyle =  "#CCC";
+    ctx.globalAlpha = 0.9;
+    ctx.fillStyle =  "#e53935";
     ctx.fillRect(x,y,blockWidth,blockWidth);
 
     ctx.fillStyle = "#FFF";
@@ -375,7 +389,25 @@ var TouchControls = function() {
                  x+blockWidth/2-txtSize.width/2, 
                  y+3*blockWidth/4+5);
   };
+this.drawSquare2 = function(ctx,x,y,txt,on) {
+    // ctx.globalAlpha = on ? 0.9 : 0.6;
+    var txtSize = ctx.measureText(txt);
+    ctx.fillStyle =  "#e53935";
+    ctx.fillRect(x,y,txtSize.width,30);
 
+    ctx.fillStyle = "#FFF";
+    ctx.globalAlpha = 1.0;
+    ctx.font = "bold 15px arial";
+
+    // this.addEventListener('click', function(e) {
+    //     console.log('click: ');
+    // }, false);
+    
+
+    ctx.fillText(txt, 
+                 x+10, 
+                 y+20);
+  };
   this.draw = function(ctx) {
     ctx.save();
 

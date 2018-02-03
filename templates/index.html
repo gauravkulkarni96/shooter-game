@@ -34,33 +34,34 @@ canvas {
 <body>
 <center>
   <div id='container'>
-    <canvas id='game' width='320' height='480'></canvas>
+  <div style="float:left; width:50%;padding-top:7px;background:#e3212a; height:50px; border-right:2px solid black;"><h4 id="tries" style="color:white"><center><b>Tries left: {{ tries }}</b></center></h4></div>
+    <button type="button" class="btn btn-danger btn-lg" style="width:50%;height:50px; float:right; background:#e3212a; border-radius:0; border-left:2px solid black" data-toggle="modal" data-target="#myModal"><b>LEADERBOARD</b></button><canvas id='game' width='340' height='530' style="z-index:2;"></canvas>
   </div>
-  <p id="tries"><b>Tries left: {{ tries }}</b></p>
-  <button type="button" class="btn btn-danger btn-lg" style="width:320px;" data-toggle="modal" data-target="#myModal">Leaderboard</button>
+  <div style="width:25%;background:#e3212a; height:50px;margin-top:-5px"></div>
   </center>
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
-      <div class="modal-content" style="background:black;">
-        <div class="modal-header" style="border:0;">
-          <button type="button" class="close" style="background:red;color:red" data-dismiss="modal">&times;</button>
-          <h2 class="modal-title" style="color:#d9534f; font-family: 'Rammetto One', cursive;"><center>LEADERBOARD</center></h2>
+      <div class="modal-content">
+        <div class="modal-header" style="border:0; background:#ff9d33">
+          <button type="button" class="close" style="background:red;color:#e3212a" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title" style="color:#e3212a; font-family: 'Rammetto One', cursive;"><center>LEADERBOARD</center></h2>
           <center><hr style="width:100px; margin:0;border-top:2px solid #d9534f"></center>
         </div>
-        <div class="modal-body" style=" height:480px; overflow-y:scroll; padding:0" id="toplist">
+        <div class="modal-body" style=" height:480px; overflow-y:scroll; padding:0; background:#e3212a" id="toplist">
         <center>
     {% include 'table.html' %}
     </center>
         </div>
-        <div class="modal-footer" style="border:0;">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <div class="modal-footer" style="border:0; background:#ff9d33">
+          <button type="button" class="btn btn-danger" style="background:#e3212a" data-dismiss="modal">Close</button>
         </div>
       </div>
       
     </div>
   </div>
+  <script type="text/javascript"></script>
   <script src='{% static "js/engine.js" %}'></script>
   <script type="text/javascript">
     var sprites = {
@@ -104,8 +105,7 @@ var startGame = function() {
     Game.setBoard(1,new Starfield(50,0.6,100));
     Game.setBoard(2,new Starfield(100,1.0,50));
   }  
-  Game.setBoard(3,new TitleScreen("Alien Invasion", 
-                                  "Press fire to start playing",
+  Game.setBoard(3,new TitleScreen(1,
                                   playGame));
 };
 
@@ -132,8 +132,7 @@ var playGame = function() {
 };
 
 var winGame = function() {
-  Game.setBoard(3,new TitleScreen("You win!", 
-                                  "Press fire to play again",
+  Game.setBoard(3,new TitleScreen(3,
                                   playGame));
   $.ajax({
             type:"POST",
@@ -153,8 +152,7 @@ var winGame = function() {
 };
 
 var loseGame = function(data) {
-  Game.setBoard(3,new TitleScreen("You lose!", 
-                                  "Press fire to play again",
+  Game.setBoard(3,new TitleScreen(2,
                                   playGame));
   $.ajax({
             type:"POST",
@@ -187,7 +185,7 @@ var Starfield = function(speed,opacity,numStars,clear) {
   // If the clear option is set, 
   // make the background black instead of transparent
   if(clear) {
-    starCtx.fillStyle = "#000";
+    starCtx.fillStyle = "#ffb300";
     starCtx.fillRect(0,0,stars.width,stars.height);
   }
 

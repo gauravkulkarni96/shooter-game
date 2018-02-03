@@ -20,7 +20,7 @@ def home(request):
 	}
 	context['tries'] = MAX_TRIES-len(tries)
 	if len(tries) >= MAX_TRIES:
-		context['tries'] = "0 | You may play but the scores won't be recorded."
+		context['tries'] = "0"
 	
 	return render(request, 'index.html', context)
 
@@ -59,7 +59,7 @@ def savescore(request):
 	tries = scores.objects.filter(user = user)
 	tries = MAX_TRIES - len(tries)
 	if tries<=0:
-		tries = "Tries left: 0 <br> You may play but the scores won't be recorded."
+		tries = "Tries left: 0"
 		context_list = {
 		'tries': tries
 		}
@@ -73,7 +73,7 @@ def savescore(request):
 	scoreobj.save()
 	tries -= 1
 	if tries <= 0:
-		tries = "Tries left: 0 <br> You may play but the scores won't be recorded."
+		tries = "Tries left: 0"
 	else:
 		tries = "Tries left: "+str(tries)
 	context_list = {

@@ -11,6 +11,7 @@
 		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 		<title>CatchThatBus | Happy New Year</title>
+<link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 </head>
 <style type="text/css">
 	#playground-container {
@@ -101,7 +102,7 @@ padding: 8px 12px !important;
  	margin: 0 auto;
  	max-width: 400px;
     padding: 10px 40px;
-	background:#d9534f;
+	background:#e3212a;
 	    color: #FFF;
     text-shadow: none;
 	-webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
@@ -125,13 +126,16 @@ span.input-group-addon i {
 
 </style>
 
-<body>
+<body style="background:#ff9d33">
 		<div class="container">
-			<div class="row main">
-				<div class="main-login main-center">
+			<div class="row main" >
+				<div class="main-login main-center" style="border:10px solid #e3212a;padding:0">
+				<div class="main-login main-center" style="border:1px solid #ff9d33; border-style:double;">
+				<center><h1 style="margin-bottom:5px"><b>WANG WANG</b></h1>
+				<h3 style="margin-top:0px"><b>ANGPAO SHOOTER</b></h3></center>
+				<hr>
 				<h5>Please provide your details to play.</h5>
 					<form class="" action="/submit" method="POST">{% csrf_token %}
-						
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">Your Name</label>
 							<div class="cols-sm-10">
@@ -167,6 +171,7 @@ span.input-group-addon i {
 						</div>
 						
 					</form>
+				</div>
 				</div>
 			</div>
 		</div>
