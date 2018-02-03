@@ -35,8 +35,8 @@ def submit(request):
 		searchobj = details.objects.filter(name = name, email = email, phone = phone)
 	searchobj = searchobj[0]
 	request.session['id'] = searchobj.id
-	request.session['email'] = email
-	request.session['name'] = name
+	request.session['email'] = searchobj.email
+	request.session['name'] = searchobj.name
 	return HttpResponseRedirect('/')
 
 def delsession(request):
