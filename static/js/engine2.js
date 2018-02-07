@@ -172,7 +172,7 @@ var TitleScreen = function TitleScreen(no,callback) {
   this.draw = function(ctx) {
     img = new Image()
     if(no == 1){ //start
-      img.src = "static/images/Intro.png"
+      img.src = "static/images/Intro2.png"
     }
     else if(no == 2){ //lose
       img.src = "static/images/Lose.png"
