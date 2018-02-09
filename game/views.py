@@ -14,12 +14,14 @@ def home(request):
 	user = details.objects.get(id = request.session['id'])
 	tries = scores.objects.filter(user = user)
 
-	top = scores.objects.all().order_by('-score')[:50]
+	top = scores.objects.all().order_by('-score')[:15]
 	context = {
+		'topt':[1,2],
 		'topten':top,
 	}
 	context['tries'] = MAX_TRIES-len(tries)
 	if len(tries) >= MAX_TRIES:
+		return render(request, 'max.html', context)
 		context['tries'] = "0"
 	
 	return render(request, 'index.html', context)
@@ -46,8 +48,6 @@ def delsession(request):
 		del request.session['name']
 	if 'id' in request.session:
 		del request.session['id']
-	if 'tries' in request.session:
-		del request.session['tries']
 	return HttpResponseRedirect('/')
 
 @csrf_exempt
@@ -61,7 +61,8 @@ def savescore(request):
 	if tries<=0:
 		tries = "Tries left: 0"
 		context_list = {
-		'tries': tries
+		'tries': tries,
+		'redirect':True,
 		}
 		return HttpResponse(json.dumps(context_list),content_type="application/json")
 
@@ -71,20 +72,24 @@ def savescore(request):
 		win = False
 	scoreobj = scores(user = user, score = score, win = win)
 	scoreobj.save()
+	redirect = False
 	tries -= 1
 	if tries <= 0:
 		tries = "Tries left: 0"
+		redirect = True
 	else:
 		tries = "Tries left: "+str(tries)
 	context_list = {
-	'tries': tries
+	'tries': tries,
+	'redirect':redirect,
 	}
 	return HttpResponse(json.dumps(context_list),content_type="application/json")
 
 def gettop(request):
-	top = scores.objects.order_by('-score', '-win', 'date')[:50]
+	top = scores.objects.order_by('-score', '-win', 'date')[:15]
 	
 	context = {
+		'topt':[1,2],
 		'topten':top,
 	}
 	return render(request, 'table.html', context)

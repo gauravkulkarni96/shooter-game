@@ -1,0 +1,47 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>CatchThatBus | Happy New Year</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css" /> -->
+  <link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+  <meta name="viewport" content="width=device-width, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link href="https://fonts.googleapis.com/css?family=Alegreya|Indie+Flower|Rammetto+One|Risque" rel="stylesheet">
+</head>
+<body style="background:#ffb300;color:#e3212a;padding:20px">
+	<center>
+	<img src="{% static 'images/Intro.png' %}" style="max-width:90%"><h1>You have reached the maximum number of tries.</h1><br><h2>Thankyou for your participation!</h2><br>
+	<button type="button" class="btn btn-danger btn-lg" style="width:230px;height:50px; background:#e3212a; border-radius:3;border-bottom:3px solid black;border-right:2px solid black;" data-toggle="modal" data-target="#myModal"><b>SHOW LEADERBOARD</b></button><br><br>
+	<a href="/tnc">Terms and conditions</a></center>
+	<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="border:0; background:#ff9d33">
+          <button type="button" class="close" style="background:red;color:#e3212a" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title" style="color:#e3212a; font-family: 'Rammetto One', cursive;"><center>LEADERBOARD</center></h2>
+          <center><hr style="width:100px; margin:0;border-top:2px solid #d9534f"></center>
+        </div>
+        <div class="modal-body" style=" height:480px; overflow-y:scroll; padding:0; background:#e3212a" id="toplist">
+        <center>
+    {% include 'table.html' %}
+    </center>
+        </div>
+        <div class="modal-footer" style="border:0; background:#ff9d33">
+          <button type="button" class="btn btn-danger" style="background:#e3212a" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</body>
+</html>

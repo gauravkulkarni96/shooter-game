@@ -31,11 +31,12 @@ canvas {
 }
 </style>
 
-<body>
+<body style="">
 <center>
   <div id='container'>
   <div style="float:left; width:50%;padding-top:7px;background:#e3212a; height:50px; border-right:2px solid black;"><h4 id="tries" style="color:white"><center><b>Tries left: {{ tries }}</b></center></h4></div>
-    <button type="button" class="btn btn-danger btn-lg" style="width:50%;height:50px; float:right; background:#e3212a; border-radius:0; border-left:2px solid black" data-toggle="modal" data-target="#myModal"><b>LEADERBOARD</b></button><canvas id='game' width='340' height='530' style="z-index:2;"></canvas>
+    <button type="button" class="btn btn-danger btn-lg" style="width:50%;height:50px; float:right; background:#e3212a; border-radius:0; border-left:2px solid black" data-toggle="modal" data-target="#myModal"><b>LEADERBOARD</b></button><canvas id='game' width='400' height='630' style="z-index:2;"></canvas><br><br>
+    <a href="/tnc">Terms and conditions</a></center>
   </div>
   <!-- <div style="width:25%;background:#e3212a; height:50px;margin-top:-5px"></div> -->
   </center>
@@ -144,6 +145,9 @@ var winGame = function() {
           },
           success: function(data){
             $('#tries').html("<b>"+data['tries']+"</b>");
+            if(data['redirect'] == true){
+              location.reload();
+            }
           },
   });
   setTimeout(function() {
@@ -164,6 +168,9 @@ var loseGame = function(data) {
           },
           success: function(data){
             $('#tries').html("<b>"+data['tries']+"</b>");
+            if(data['redirect'] == true){
+              location.reload();
+            }
           },
   });
   setTimeout(function() {
