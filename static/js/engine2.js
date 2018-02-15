@@ -180,7 +180,7 @@ var TitleScreen = function TitleScreen(no,callback) {
     if(no == 3){ //win
       img.src = "static/images/Win.png"
     }
-    ctx.drawImage(img,Game.width/10,Game.height/2-75,8*Game.width/10,150);
+    ctx.drawImage(img,Game.width/10,Game.height/2-75,8*Game.width/10,190);
     // ctx.fillStyle =  "#e53935";
     // var measure = ctx.measureText(title); 
     // ctx.fillRect(Game.width/10,G,266,100);

@@ -15,6 +15,14 @@
 <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 </head>
 <style type="text/css">
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
 	#playground-container {
     height: 500px;
     overflow: hidden !important;
