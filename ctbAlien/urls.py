@@ -20,7 +20,6 @@ from game import views
 urlpatterns = [
 	url(r'^$', views.home, name='home'),
 	url(r'^submit$', views.submit, name='submit'),
-	url(r'^tnc$', views.tnc, name='tnc'),
 	url(r'^save$', views.savescore, name='save'),
 	url(r'^delsession$', views.delsession, name='delsession'),
 	url(r'^gettop$', views.gettop, name='gettop'),
